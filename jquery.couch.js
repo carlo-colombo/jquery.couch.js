@@ -781,7 +781,9 @@
       },
       complete: function(req) {
         try {
-          var resp = $.parseJSON(req.responseText);
+          var resp = options.dataType=="json"
+            ? $.parseJSON(req.responseText)
+            : req.responseText;
         } catch(e) {
           if (options.error) {
             options.error(req.status, req, e);
